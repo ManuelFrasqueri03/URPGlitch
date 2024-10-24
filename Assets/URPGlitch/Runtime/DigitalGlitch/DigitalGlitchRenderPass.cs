@@ -22,7 +22,8 @@ namespace URPGlitch.Runtime.DigitalGlitch
         readonly ProfilingSampler _profilingSampler;
         readonly System.Random _random;
 
-        readonly Material _glitchMaterial;
+        //readonly Material _glitchMaterial;
+        [SerializeField] private Material _glitchMaterial;
         readonly Texture2D _noiseTexture;
         readonly DigitalGlitchVolume _volume;
 
@@ -40,7 +41,7 @@ namespace URPGlitch.Runtime.DigitalGlitch
             renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
             _profilingSampler = new ProfilingSampler(RenderPassName);
             _random = new System.Random();
-            _glitchMaterial = CoreUtils.CreateEngineMaterial(shader);
+            //_glitchMaterial = CoreUtils.CreateEngineMaterial(shader);
 
             _noiseTexture = new Texture2D(64, 32, TextureFormat.ARGB32, false)
             {
@@ -112,10 +113,15 @@ namespace URPGlitch.Runtime.DigitalGlitch
 
                 var r = (float)_random.NextDouble();
                 var blitTrashHandle = r > 0.5f ? _trashFrame1 : _trashFrame2;
+
+                //A PARTIR DE ACA DE ASIGNAN LAS TEXTURAS QUE NECESITAMOS
+
                 cmd.SetGlobalFloat(IntensityID, _volume.intensity.value);
                 cmd.SetGlobalTexture(NoiseTexID, _noiseTexture);
                 cmd.SetGlobalTexture(MainTexID, _mainFrame.Identifier());
                 cmd.SetGlobalTexture(TrashTexID, blitTrashHandle.Identifier());
+
+                // ACA TERMINA (TENER EN CUENTA EL BLIT)
 
                 cmd.Blit(_mainFrame.Identifier(), source, _glitchMaterial);
 
