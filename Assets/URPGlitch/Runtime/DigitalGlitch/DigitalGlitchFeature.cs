@@ -11,12 +11,14 @@ namespace URPGlitch.Runtime.DigitalGlitch
     [Serializable]
     public sealed class DigitalGlitchFeature : ScriptableRendererFeature
     {
-        [SerializeField] Shader shader;
+        //[SerializeField] Shader shader;
+
+        [SerializeField] Material material;
         DigitalGlitchRenderPass _scriptablePass;
 
         public override void Create()
         {
-            _scriptablePass = new DigitalGlitchRenderPass(shader);
+            _scriptablePass = new DigitalGlitchRenderPass(material);
         }
 
         // Here you can inject one or multiple render passes in the renderer.

@@ -36,7 +36,7 @@ namespace URPGlitch.Runtime.DigitalGlitch
             _volume != null &&
             _volume.IsActive;
 
-        public DigitalGlitchRenderPass(Shader shader)
+        public DigitalGlitchRenderPass(Material material)
         {
             renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
             _profilingSampler = new ProfilingSampler(RenderPassName);
