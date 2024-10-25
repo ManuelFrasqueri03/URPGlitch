@@ -35,12 +35,12 @@ namespace URPGlitch.Runtime.DigitalGlitch
             _volume != null &&
             _volume.IsActive;
 
-        public DigitalGlitchRenderPass(Shader shader)
+        public DigitalGlitchRenderPass(Material shader)
         {
             renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
             _profilingSampler = new ProfilingSampler(RenderPassName);
             _random = new System.Random();
-            _glitchMaterial = CoreUtils.CreateEngineMaterial(shader);
+            // _glitchMaterial = CoreUtils.CreateEngineMaterial(shader);
 
             _noiseTexture = new Texture2D(64, 32, TextureFormat.ARGB32, false)
             {
